@@ -13,8 +13,10 @@ public class VideoDetailServlet extends BaseJsonServlet<VideoBean> {
 
     @Override
     protected ResponseEntity<VideoBean> onHandle(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        String brand = req.getHeader("brand");
+        String model = req.getHeader("model");
         String id = req.getParameter("id");
-        VideoBean bean = new VideoBean(id, "视频标题");
+        VideoBean bean = new VideoBean(id, String.format("视频标题 请求头: brand=%s model=%s", brand, model));
         return ResponseEntity.ofSuccess(bean);
     }
 }
